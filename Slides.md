@@ -352,5 +352,108 @@ Edit: x/counter/save.go
 
 ----
 
-# Worker pools
+# Excursion: Executing code only once
 
+The paper mentions (6.1.2 Errors during Message Passing) a bug (e.g.
+Docker#24007)that was caused by too many `close` operations of a channel. A
+misuse of channel.
+
+* Example: x/extraclosefail
+
+What happens there?
+
+----
+
+# Excursion: sync.Once
+
+The sync.Once allows to setup things once - or tear them down once. The example
+is not great, but is is a possibililty.
+
+----
+
+# Other uses of sync.Once
+
+> I like to use `sync.Once` to do setup inside my handler functions when I’m
+> writing websites and services in Go. Particularly for compiling templates,
+> loading fairly static data from disk or a database, or even loading the latest
+> information from a remote web service. (S78)
+
+----
+
+# Excursoin: sync.WaitGroup
+
+> A WaitGroup waits for a collection of goroutines to finish. The main goroutine
+> calls Add to set the number of goroutines to wait for. Then each of the
+> goroutines runs and calls Done when finished. At the same time, Wait can be
+> used to block until all goroutines have finished.
+
+----
+
+# Bounded parallelism
+
+Go routines are lightweight, and we can start many of them fast.
+
+* Example: x/startgr
+
+They also do not consume a lot of memory, around 2000 bytes.
+
+* Example: x/grsize
+
+----
+
+# Bounded parallelism
+
+Bounded parallelism restricts the number of goroutines running at any one point. We can use
+a semaphores.
+
+> Semaphores are a very general synchronization mechanism that can be used to
+> implement mutexes, limit access to multiple resources, solve the
+> readers-writers problem, etc. (GOP)
+
+There is no semaphore in the sync package, but we can emulate one with a
+buffered channel.
+
+----
+
+# Buffered channel semaphore
+
+* the capacity of the buffered channel is the number of resources we wish to
+  synchronize
+* the length (number of elements currently stored) of the channel is the number
+  of resources current being used
+* the capacity minus the length of the channel is the number of free resources
+  (the integer value of traditional semaphores)
+
+----
+
+# Worker pool
+
+----
+
+# Error handling
+
+----
+
+# Confinement
+
+For example a fib channel. Or some sequence generator.
+
+----
+
+# Select and nil channels
+
+----
+
+# Hedged requests
+
+----
+
+# Using context
+
+----
+
+# Context in request
+
+----
+
+# Wrap up
