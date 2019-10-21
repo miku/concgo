@@ -65,8 +65,9 @@ If not noted otherwise, "Paper" will refer to this paper.
 
 ----
 
-# Three little projects
+# A few little projects
 
+* A parallel link checker.
 * A generic parallel line processing function.
 * Fan-out indexing with solrbulk and esbulk.
 * Hedged request with networked version of the fortune command.
@@ -338,3 +339,18 @@ Edit: x/counter/save.go
 // (4) Print out the final value of the counter (by just accessing the struct field).
 //
 ```
+
+----
+
+# Counter wrap up
+
+* sync.Mutex for protecting access to a resource
+* A mutex will have performance implications, but these may matter later
+* A sync.RWMutex allows multiple reads, but only a single write
+* You can embed a struct to make the API a bit simpler
+* For counters, there are alternatives, like `atomic.AddUint64`
+
+----
+
+# Worker pools
+
