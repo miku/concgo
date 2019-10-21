@@ -49,6 +49,22 @@ Get more familiar with a few primitives and patterns.
 
 ----
 
+# Paper: Understanding Real-World Concurrency Bugs in Go
+
+* Looked at Docker, k8s, etc, CockroachDB, gRPC-Go, BoltDB
+
+> We made nine high-level key observations of Go concurrency bug causes,
+fixes, and detection.
+
+Axes:
+
+* Classic vs CSP style primitives
+* Blocking vs Nonblocking bugs
+
+If not noted otherwise, "Paper" will refer to this paper.
+
+----
+
 # Three little projects
 
 * A generic parallel line processing function.
@@ -124,4 +140,58 @@ the program.*
 > v. When multiple goroutines access a shared variable v, they **must use
 > synchronization events to establish happens-before conditions that ensure
 > reads observe the desired writes**.
+
+----
+
+# Example: x/hardsleep
+
+```go
+	// Note: Extensive testing found 5µs to be the ideal time to have chance to
+	// observe different results on subsequent runs. Works on my machine.
+	time.Sleep(5 * time.Microsecond)
+```
+
+----
+
+# Example: x/hardsleep
+
+> The takeaway here is that you should always target logical correctness.
+Introducing sleeps into your code can be a handy way to debug concurrent
+programs, but they are not a solution. (KCB)
+
+----
+
+# Pop quiz
+
+The paper looks at goroutine creation sites (go keyword). Named and anonymous
+functions can be used.
+
+Question: What is more frequent?
+
+* A: named functions
+* B: anonymous functions
+* C: depends on the project
+
+----
+
+# Pop quiz
+
+Question: What is more frequent?
+
+* B: anonymous functions
+* C: depends on the project
+
+Only BoltDB is different, otherwise anonymous functions seem to be more popular.
+
+----
+
+# Go concurrency primitives
+
+Go support classic and CSP style. Which one do you choose?
+
+![](static/fig21.png)
+
+Source: KCB
+
+----
 
