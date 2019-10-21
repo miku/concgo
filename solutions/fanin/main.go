@@ -14,7 +14,14 @@ import (
 // worker, the worker will put the result on an output channel. This output
 // channel should just print the data.
 //
+// (1) Add a function fanIn that receives the results (strings) and print the
+// results (or log them).
 //
+// (2) Update the worker implementation: Do no log there, but put the results on
+// a new results channel.
+//
+// (3) Update main, add required channels. Also think about the how we can wait
+// sensibly let all processes finish.
 
 // tasks returns a slice of strings simulating tasks.
 func tasks() (result []string) {

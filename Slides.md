@@ -480,11 +480,57 @@ do not collect any results (except for an error, maybe).
 # Exercise: Fan-In
 
 Extend the implementation of the worker pool example into a full fan-out, fan-in
-example. 
+example: x/fanin
+
+```go
+// Exercise: Worker pool with fan-in. Instead of printing the results in the
+// worker, the worker will put the result on an output channel. This output
+// channel should just print the data.
+//
+// (1) Add a function fanIn that receives the results (strings) and print the
+// results (or log them).
+//
+// (2) Update the worker implementation: Do no log there, but put the results on
+// a new results channel.
+//
+// (3) Update main, add required channels. Also think about the how we can wait
+// sensibly let all processes finish.
+```
 
 ----
 
 # Error handling
+
+As a final piece in the worker pool example, let's think about error handling.
+Currently, no errors occur, but that is not realistic.
+
+There are various ways to implement error handling. You could create a separate
+channel for errors.
+
+Another option is to group results and error into a single (new) type and pass
+this new type along the output channel. The worker is free to retry operations,
+but ultimately is free to pass on the error - to be handled at fan in time.
+
+----
+
+# Exercise: Error handling
+
+* Exercise: x/errhandling
+
+```go
+// Exercise: Worker pool with fan-in and error handling. We want to pass errors
+// along the results.
+//
+// (1) Create a result type, that hold result and error.
+//
+// (2) Adjust worker, fanIn function and main to use the new result type.
+//
+// (3) Adjust worker, so it sometimes (e.g. in 10% of the cases) will return an
+// error.
+//
+// (4) In the fanIn function print out the good results and count the errors,
+// print out the number of errors at the end.
+```
 
 ----
 
