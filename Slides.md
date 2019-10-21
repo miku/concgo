@@ -233,6 +233,8 @@ resource (variable) and at least one of the accesses is write.
 
 # Exercise
 
+Edit: x/counter/racy.go
+
 ```go
 // Exercise: Update a variable from different goroutines.
 //
@@ -243,4 +245,97 @@ resource (variable) and at least one of the accesses is write.
 func main() {
 	var c int // Count this up from different goroutines.
 }
+```
+
+----
+
+# Exercise
+
+The printed result will be inconsistent (e.g. 93, 96, 100, ...).
+
+----
+
+# The race detector
+
+The Go has a builtin race detector. It can detect these kind of errors.
+
+* [https://golang.org/doc/articles/race_detector.html](https://golang.org/doc/articles/race_detector.html)
+
+> Data races are among the most common and hardest to debug types of bugs in
+> concurrent systems. A data race occurs when two goroutines access the same
+> variable concurrently and at least one of the accesses is a write. 
+
+----
+
+# Example
+
+```go 
+[x/counter] $ go run -race racy.go
+$ go run -race racy0.go 
+WARNING: DATA RACE
+Read at 0x00c0000b4010 by goroutine 8:
+  main.main.func1()
+      /home/tir/code/miku/concgo/solutions/counter/racy0.go:12 +0x38
+
+Previous write at 0x00c0000b4010 by goroutine 7:
+  main.main.func1()
+      /home/tir/code/miku/concgo/solutions/counter/racy0.go:12 +0x4e
+
+Goroutine 8 (running) created at:
+  main.main()
+      /home/tir/code/miku/concgo/solutions/counter/racy0.go:11 +0x83
+
+Goroutine 7 (finished) created at:
+  main.main()
+      /home/tir/code/miku/concgo/solutions/counter/racy0.go:11 +0x83
+``` 
+
+----
+
+# Race detector
+
+The race detector uses another library called thread sanitizer (TSan) and works
+by inserting extra statements for tracking into the executable. The executable
+gets slower and will consume more memory.
+
+----
+
+# Race detector limits
+
+> The **race detector only finds races that happen at runtime**, so it can't find
+> races in code paths that are not executed. If your tests have incomplete
+> coverage, you may find more races by running a binary built with -race under a
+> realistic workload. 
+
+But it found numerous bugs in the standard library and elsewhere.
+
+----
+
+# Fixing the counter
+
+Use a `sync.Mutex`, which serializes access to a shared variable, it has two methods:
+
+* Lock
+* Unlock
+
+> We can define a block of code to be executed in mutual exclusion by
+> surrounding it with a call to Lock and Unlock as shown on the Inc method.
+
+We can also use `defer` to ensure the mutex.
+
+----
+
+# Exercise: x/counter
+
+Edit: x/counter/save.go
+
+```go
+
+// Exercise: Write a save counter.
+//
+// (1) Create a type counter that wraps an int and uses a sync.Mutex to protect access to the value.
+// (2) Create a method on the type named `Inc` that increment the counter by one.
+// (3) In main, create a counter, and start 100 goroutines, each incrementing the counter.
+// (4) Print out the final value of the counter (by just accessing the struct field).
+//
 ```
