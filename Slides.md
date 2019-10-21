@@ -419,11 +419,29 @@ buffered channel.
 
 * the capacity of the buffered channel is the number of resources we wish to
   synchronize
-* the length (number of elements currently stored) of the channel is the number
+* the length** (number of elements currently stored) of the channel is the number
   of resources current being used
 * the capacity minus the length of the channel is the number of free resources
   (the integer value of traditional semaphores)
 
+----
+
+# Unbounded version
+
+* Example: x/unbounded
+
+----
+
+# Exercise: Create a bounded version
+
+* x/bounded
+
+```go
+// Exercise: Create a version which limit the number of goroutines running at
+// any given time. Let's use a limit of 5.
+//
+// (1) Use a channel as a semaphore.
+```
 ----
 
 # Worker pool
