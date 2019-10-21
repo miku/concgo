@@ -196,10 +196,9 @@ Go support classic and CSP style. Which one do you choose? (KCB)
 # Pop quiz
 
 The gRPC project has several implementations, e.g. C or Go. The Paper discribes
-the ratio of normal source lines and goroutine / thread creation sites as
-goroutine / thread creations per 1000 lines of code.
-
-* Example: 1 go statement per 1000 lines would be: 1.
+the ratio of **normal source lines** and **goroutine / thread creation sites** as
+goroutine / thread creations per 1000 lines of code. Example: 1 go statement per
+1000 lines would be: 1.
 
 Question 1: What do you think this ratio is for the gRPC-Go project?
 
