@@ -187,11 +187,9 @@ Only BoltDB is different, otherwise anonymous functions seem to be more popular.
 
 # Go concurrency primitives
 
-Go support classic and CSP style. Which one do you choose?
+Go support classic and CSP style. Which one do you choose? (KCB)
 
-![](static/fig21.png)
-
-Source: KCB
+![](static/fig21-70.png)
 
 ----
 
