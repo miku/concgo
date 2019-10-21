@@ -447,15 +447,25 @@ buffered channel.
 
 # Worker pool
 
-An alternative to a semaphore is to use a fan out pattern. The basic idea:
+Another example for a boundednessis to use a fan out pattern. The basic idea:
 
-* A fixed number of goroutines
-* Round robin fan out of work items
+* A fixed number of goroutines - workers, they will consume tasks from a queue
+* The main goroutine put items on the queue
+* Workers work on items as the are available, round robin
 
 ----
 
-# Worker pool
+# Exercise: Worker pool
 
+* Exercise: x/workerpool
+
+```go
+// Exercise: A worker pool example. Some data and a basic worker is already
+// there.
+//
+// (1) Complete the main function, setup a number of workers, the queue.
+// (2) Iterate over the data and put the strings of the queue.
+```
 
 
 ----
