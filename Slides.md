@@ -442,9 +442,21 @@ buffered channel.
 //
 // (1) Use a channel as a semaphore.
 ```
+
 ----
 
 # Worker pool
+
+An alternative to a semaphore is to use a fan out pattern. The basic idea:
+
+* A fixed number of goroutines
+* Round robin fan out of work items
+
+----
+
+# Worker pool
+
+
 
 ----
 
@@ -452,7 +464,7 @@ buffered channel.
 
 ----
 
-# Confinement
+# Generators and Confinement
 
 For example a fib channel. Or some sequence generator.
 
