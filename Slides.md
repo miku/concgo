@@ -536,11 +536,17 @@ but ultimately is free to pass on the error - to be handled at fan in time.
 
 # Generators and Confinement
 
-For example a fib channel. Or some sequence generator.
+<!-- For example a fib channel. Or some sequence generator. -->
+
+Save operations: immutable data, data protection and confinement.
+
+* Examples: x/confinementadhoc, x/confinementlex
 
 ----
 
 # Select and nil channels
+
+
 
 ----
 
