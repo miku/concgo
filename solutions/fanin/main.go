@@ -10,11 +10,11 @@ import (
 	"time"
 )
 
-// Exercise: A worker pool example. Some data and a basic worker is already
-// there. A task is represented by a string (could be a URL for example).
+// Exercise: Worker pool with fan-in. Instead of printing the results in the
+// worker, the worker will put the result on an output channel. This output
+// channel should just print the data.
 //
-// (1) Complete the main function, setup a number of workers, the queue.
-// (2) Iterate over the data and put the strings of the queue.
+//
 
 // tasks returns a slice of strings simulating tasks.
 func tasks() (result []string) {
@@ -25,26 +25,41 @@ func tasks() (result []string) {
 }
 
 // worker has an id, a queue to receive tasks from, WaitGroup for joining.
-func worker(id int, queue chan string, wg *sync.WaitGroup) {
+func worker(id int, queue chan string, out chan string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for task := range queue {
-		log.Printf("[%d] %s", id, strings.ToUpper(task))
+		result := fmt.Sprintf("[%d] %s", id, strings.ToUpper(task))
+		out <- result
 		time.Sleep(time.Duration(rand.Intn(100)) * time.Millisecond)
 	}
 }
 
+func fanIn(done chan bool, out chan string) {
+	for result := range out {
+		log.Printf("fanIn: %s", result)
+	}
+	done <- true
+}
+
 func main() {
 	queue := make(chan string)
+	out := make(chan string)
+	done := make(chan bool)
+
 	var wg sync.WaitGroup
 
 	for i := 0; i < runtime.NumCPU(); i++ {
 		wg.Add(1)
-		go worker(i, queue, &wg)
+		go worker(i, queue, out, &wg)
 	}
+
+	go fanIn(done, out)
 
 	for _, task := range tasks() {
 		queue <- task
 	}
 	close(queue)
 	wg.Wait()
+	close(out)
+	<-done
 }

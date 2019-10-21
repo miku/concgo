@@ -467,6 +467,20 @@ Another example for a boundednessis to use a fan out pattern. The basic idea:
 // (2) Iterate over the data and put the strings of the queue.
 ```
 
+----
+
+# Fan-In
+
+We used fan out, to distribute tasks to the workers. The workers might be
+independent, no fan in required. As an example, in a parallel indexing tool, we
+do not collect any results (except for an error, maybe).
+
+----
+
+# Exercise: Fan-In
+
+Extend the implementation of the worker pool example into a full fan-out, fan-in
+example. 
 
 ----
 
