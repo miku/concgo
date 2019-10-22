@@ -546,11 +546,46 @@ Save operations: immutable data, data protection and confinement.
 
 # Select and nil channels
 
+* Example: x/merge, zeros, hang, fix
 
+----
+
+# Goroutine leaks
+
+Goroutines cannot be killed. Other options:
+
+* complete task
+* unrecoverable error
+* request to quit
+
+----
+
+# Goroutine leaks
+
+* Examples: x/leaks, leaky and quit
 
 ----
 
 # Hedged requests
+
+An interesting pattern to shield against failures are hedged requests. The same
+request is sent to different servers, in order to mitigate potentially slow or
+even missing responses.
+
+Demo: `metha-fortune`. This tool almost certainly encounters failing or slow
+endpoints, yet still works.
+
+This pattern has been described in various talks, blog posts and
+[articles](https://www2.cs.duke.edu/courses/cps296.4/fall13/838-CloudPapers/dean_longtail.pdf).
+
+----
+
+# Hedged requests
+
+* Example: x/hedged
+
+We want quick news, and do not necessary care about the source. Make N HTTP
+requests to news sources and display the first one, cancel the others. 
 
 ----
 
