@@ -587,13 +587,30 @@ This pattern has been described in various talks, blog posts and
 We want quick news, and do not necessary care about the source. Make N HTTP
 requests to news sources and display the first one, cancel the others. 
 
+```
+ ________________________________________
+/ Why Botswanas election could be       \
+| decided by elephants and diamonds [BBC |
+\ News - World]                          /
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
 ----
 
 # Using context
 
+* XXX: 
+
 ----
 
 # Context in request
+
+* Example: x/requestcancel
 
 ----
 
