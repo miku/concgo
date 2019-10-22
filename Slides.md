@@ -378,6 +378,13 @@ What happens there?
 The sync.Once allows to setup things once - or tear them down once. The example
 is not great, but is is a possibililty.
 
+```shell
+$ grep -ir sync.Once $(go env GOROOT)/src | wc -l
+112
+```
+
+The 2017 book (KCB) reports 70.
+
 ----
 
 # Other uses of sync.Once
