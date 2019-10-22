@@ -533,6 +533,15 @@ but ultimately is free to pass on the error - to be handled at fan in time.
 
 ----
 
+# Code review and API design
+
+Package [github.com/miku/parallel](https://github.com/miku/parallel) is a small
+helper for working with typically line delimited data.
+
+* Key idea: Hide concurrency behind a sequential API.
+
+----
+
 # Generators and Confinement
 
 <!-- For example a fib channel. Or some sequence generator. -->
@@ -544,6 +553,8 @@ Save operations: immutable data, data protection and confinement.
 ----
 
 # Select and nil channels
+
+Can the nil channel be useful? Example merging two streams of values.
 
 * Example: x/merge, zeros, hang, fix
 
@@ -636,6 +647,24 @@ Added to the standard library in Go 1.7.
 
 ----
 
+# Context allows to pass values with it
+
+> Use context Values only for request-scoped data that transits processes and
+> APIs, not for passing optional parameters to functions. 
+
+----
+
+# From the bugs paper
+
+> Go provides many new libraries, some of which use objects that are implicitly
+shared by multiple goroutines. If they are not used correctly, data race may
+hap- pen. For example, the context object type is designed to be accessed by
+multiple goroutines that are attached to the context. [etcd#7816]() is a data-race
+bug caused by multiple goroutines accessing the string field of a context
+object.
+
+----
+
 # Context in client request
 
 Allows to set a timeout on a client request.
@@ -649,8 +678,25 @@ Allows to set a timeout on a client request.
 
 # Context in request
 
+Allows to cancel computation, when client disconnects.
+
 * Example: x/ctxserve
 
 ----
 
 # Wrap up
+
+We saw a few patterns for combining concurrency primitives. As the paper on real
+world go bugs suggests, concurrency does not get simpler to implement with CSP.
+But is certainly allows to approach problems differently, and often more
+intuitively.
+
+----
+
+# References
+
+* CIG: Concurrency in Go, Katherine Cox-Buday (2017)
+* The Go documents
+* GO101: https://go101.org/ and https://go101.org/article/memory-model.html
+* S78: https://medium.com/statuscode/how-i-write-go-http-services-after-seven-years-37c208122831
+* GOP: http://www.golangpatterns.info/concurrency/semaphores
