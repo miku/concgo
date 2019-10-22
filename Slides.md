@@ -402,6 +402,15 @@ Allows goroutines to join.
 
 ----
 
+# Excursion: sync.ErrGroup
+
+> Package errgroup provides synchronization, error propagation, and Context
+> cancelation for groups of goroutines working on subtasks of a common task.
+
+* Example: x/errgroup
+
+----
+
 # Bounded parallelism
 
 Go routines are lightweight, and we can start many of them fast.
