@@ -25,8 +25,7 @@ import (
 
 // result value and possible error.
 type result struct {
-	value string
-	err   error
+	// TODO.
 }
 
 // tasks returns a slice of strings simulating tasks.
@@ -41,29 +40,17 @@ func tasks() (result []string) {
 func worker(id int, queue chan string, out chan result, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for task := range queue {
-		upper := fmt.Sprintf("[%d] %s", id, strings.ToUpper(task))
-		var err error
-		if rand.Float64() < 0.1 {
-			err = fmt.Errorf("failed")
-		}
-		out <- result{
-			value: upper,
-			err:   err,
-		}
+		_ = fmt.Sprintf("[%d] %s", id, strings.ToUpper(task))
 		time.Sleep(time.Duration(rand.Intn(100)) * time.Millisecond)
 	}
 }
 
 func fanIn(done chan bool, out chan result) {
-	var failed int
-	for result := range out {
-		if result.err != nil {
-			failed++
-			continue
-		}
-		log.Printf("fanIn: %s", result.value)
+	for v := range out {
+		// (4) In the fanIn function print out the good results and count the errors,
+		// print out the number of errors at the end.
+		log.Println(v)
 	}
-	log.Printf("%d tasks failed", failed)
 	done <- true
 }
 

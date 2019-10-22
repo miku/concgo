@@ -37,6 +37,14 @@ Better resource utilization. Small parallel tools.
 
 ----
 
+# Background
+
+One day.
+
+![](static/htop.png)
+
+----
+
 # Goal
 
 Get more familiar with a few primitives and patterns.
@@ -306,7 +314,9 @@ gets slower and will consume more memory.
 > coverage, you may find more races by running a binary built with -race under a
 > realistic workload. 
 
-But it found numerous bugs in the standard library and elsewhere.
+But it found numerous bugs in the standard library and elsewhere. The `-race`
+flag can be used during testing, in production the overhead might be
+considerable.
 
 ----
 
@@ -372,6 +382,8 @@ is not great, but is is a possibililty.
 
 # Other uses of sync.Once
 
+Setting up a service.
+
 > I like to use `sync.Once` to do setup inside my handler functions when I’m
 > writing websites and services in Go. Particularly for compiling templates,
 > loading fairly static data from disk or a database, or even loading the latest
@@ -379,7 +391,9 @@ is not great, but is is a possibililty.
 
 ----
 
-# Excursoin: sync.WaitGroup
+# Excursion: sync.WaitGroup
+
+Allows goroutines to join.
 
 > A WaitGroup waits for a collection of goroutines to finish. The main goroutine
 > calls Add to set the number of goroutines to wait for. Then each of the
@@ -538,7 +552,7 @@ but ultimately is free to pass on the error - to be handled at fan in time.
 Package [github.com/miku/parallel](https://github.com/miku/parallel) is a small
 helper for working with typically line delimited data.
 
-* Key idea: Hide concurrency behind a sequential API.
+* Idea: Hide concurrency behind a sequential API.
 
 ----
 
