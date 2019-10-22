@@ -2,9 +2,12 @@
 marp: true
 ---
 
-# Robust concurreny
+# Writing robust concurrent programs
 
-Implementing basic concurrency patterns.
+> Implementing basic concurrency patterns.
+
+* https://github.com/miku/concgo
+
 
 [GOLAB 2019](https://golab.io), 2019–10–22, 14:30-16:00, Florence
 [Martin Czygan](mailto:martin.czygan@gmail.com)
