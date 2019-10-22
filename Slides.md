@@ -402,6 +402,21 @@ Allows goroutines to join.
 
 ----
 
+# Pop quiz
+
+The paper report bugs involving sync.WaitGroup.
+
+Question: Can you imagine what kind of bug this was?
+
+----
+
+# Excursion: sync.WaitGroup
+
+> There is an underlying rule when using WaitGroup, which is that Add has to be
+invoked before Wait. The violation of this rule causes 6 non-blocking bugs.
+
+----
+
 # Excursion: sync.ErrGroup
 
 > Package errgroup provides synchronization, error propagation, and Context
@@ -713,6 +728,16 @@ We saw a few patterns for combining concurrency primitives. As the paper on real
 world go bugs suggests, concurrency does not get simpler to implement with CSP.
 But is certainly allows to approach problems differently, and often more
 intuitively.
+
+----
+
+# A positive note from the paper
+
+It looked at classes of bugs and fixes an observes:
+
+> The high correlation of bug causes and the primitives and strategies used to
+fix them, plus the limited types of syn- chronization primitives in Go, suggests
+fruitful revenue in investigating automatic correction of blocking bugs in Go.
 
 ----
 
