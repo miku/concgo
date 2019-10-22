@@ -10,7 +10,6 @@ Implementing basic concurrency patterns.
 [Martin Czygan](mailto:martin.czygan@gmail.com)
 
 ----
-
 # About me
 
 SWE [@ubleipzig](https://ub.uni-leipzig.de).
@@ -604,13 +603,53 @@ requests to news sources and display the first one, cancel the others.
 
 # Using context
 
-* XXX: 
+Added to the standard library in Go 1.7.
+
+> Package context defines the Context type, which carries deadlines,
+> cancellation signals, and other request-scoped values across API boundaries
+> and between processes.
+
+> Incoming requests to a server should create a Context, and outgoing calls to
+> servers should accept a Context. The chain of function calls between them must
+> propagate the Context, optionally replacing it with a derived Context created
+> using WithCancel, WithDeadline, WithTimeout, or WithValue. When a Context is
+> canceled, all Contexts derived from it are also canceled. 
+
+----
+
+# Exercise: Add with context
+
+* Exercise: x/ctxadd
+
+```go
+// Exercise: Write a function addContext, that takes a context and two integers
+// and returns the result and an error. Make it so the add is articially
+// delayed.
+//
+// (1) Write a function addContext, with a context and two integers, a, b as
+// parameters. It should return the sum a + b and an error. In the function
+// check for cancellation via Done, return early.
+//
+// (2) In main(), create a new context with a timeout, call the add function and
+// display a result or an error.
+```
+
+----
+
+# Context in client request
+
+Allows to set a timeout on a client request.
+
+* Example: x/ctxclient
+
+> Failing to call the CancelFunc leaks the child and its children until the
+> parent is canceled or the timer fires.
 
 ----
 
 # Context in request
 
-* Example: x/requestcancel
+* Example: x/ctxserve
 
 ----
 
