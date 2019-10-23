@@ -17,7 +17,7 @@ Implement a few little projects that demonstrate primitives:
 
 There are slides:
 
-* [Slides](Slides.md) ([PDF](Slides.pdf)))
+* [Slides](Slides.md) ([PDF](Slides.pdf))
 
 Exercises and examples are in:
 
