@@ -1,4 +1,4 @@
-# Concurrency in Go material
+# Concurrency in Go
 
 Golab 2019, 2019-10-22, 14:30-16:00, Florence
 
@@ -19,7 +19,7 @@ Implement a few little projects that demonstrate primitives:
 
 There are slides:
 
-* [Slides](Slides.md) ([PDF](Slides.pdf))
+* [Slides](Slides.md) - [PDF](Slides.pdf)
 
 Exercises and examples are in:
 
