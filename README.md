@@ -1,6 +1,6 @@
 # Concurrency in Go
 
-Golab 2019, 2019-10-22, 14:30-16:00, Florence
+[Golab 2019](https://golab.io), 2019-10-22, 14:30-16:00, Florence
 
 A short introduction to basic Go patterns.
 
