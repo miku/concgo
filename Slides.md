@@ -100,7 +100,7 @@ Advice from https://golang.org/ref/mem
 
 # Example: x/hard
 
-Question: What do you think can happen?
+__Question__: What do you think can happen?
 
 ----
 
@@ -179,7 +179,7 @@ programs, but they are not a solution. (KCB)
 The paper looks at goroutine creation sites (go keyword). Named and anonymous
 functions can be used.
 
-Question: What is more frequent?
+__Question__: What is more frequent?
 
 * A: named functions
 * B: anonymous functions
@@ -189,7 +189,7 @@ Question: What is more frequent?
 
 # Pop quiz
 
-Question: What is more frequent?
+__Question__: Which is more frequent?
 
 * B: anonymous functions
 * C: depends on the project
@@ -213,13 +213,13 @@ the ratio of **normal source lines** and **goroutine / thread creation sites** a
 goroutine / thread creations per 1000 lines of code. Example: 1 go statement per
 1000 lines would be: 1.
 
-Question 1: What do you think this ratio is for the gRPC-Go project?
+__Question 1__: What do you think this ratio is for the gRPC-Go project?
 
 * A: 0.083
 * B: 0.83
 * C: 8.3
 
-Question 2: Is the ratio for gRPC-C higher or lower?
+__Question 2__: Is the ratio for gRPC-C higher or lower?
 
 * A: higher
 * B: lower
@@ -418,7 +418,7 @@ Allows goroutines to join.
 
 The paper report bugs involving sync.WaitGroup.
 
-Question: Can you imagine what kind of bug this was?
+__Question__: Can you imagine what kind of bug this was?
 
 ----
 
