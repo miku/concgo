@@ -62,6 +62,7 @@ Get more familiar with a few primitives and patterns.
 
 # Paper: Understanding Real-World Concurrency Bugs in Go
 
+* [Paper](https://songlh.github.io/paper/go-study.pdf)
 * Looked at Docker, k8s, etc, CockroachDB, gRPC-Go, BoltDB
 
 > We made nine high-level key observations of Go concurrency bug causes,
