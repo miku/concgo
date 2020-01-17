@@ -32,8 +32,9 @@ SWE [@ubleipzig](https://ub.uni-leipzig.de).
 Moderate use of classical concurrency tools, like threads (in Java) or
 multiprocessing. Use case: implementing data and legacy system access tools.
 Code is slow (for many reasons). Investigating parallelization approaches.
-Discover ZeroMQ, which looks like an embeddable networking library but acts like
-a concurrency framework.
+Discover [ZeroMQ](https://zeromq.org/)
+([guide](https://lqhl.me/resources/zguide-py.pdf)), which looks like an
+embeddable networking library but acts like a concurrency framework.
 
 Patterns, resulted in faster tools. Discovered sequential, than concurrent Go.
 Better resource utilization. Small parallel tools.
@@ -55,7 +56,7 @@ Get more familiar with a few primitives and patterns.
 * Slides
 * Example code
 * A few exercises
-* Pop quizzes with questions related to a [paper](https://songlh.github.io/paper/go-study.pdf) 
+* Pop quizzes with questions related to a [paper](https://songlh.github.io/paper/go-study.pdf)
 
 ----
 
@@ -137,7 +138,7 @@ Happens-before.
 > the order specified by the program. That is, compilers and processors may
 > reorder the reads and writes executed within a single goroutine only when the
 > reordering does not change the behavior within that goroutine as defined by
-> the language specification. 
+> the language specification.
 
 *Within a single goroutine, the happens-before order is the order expressed by
 the program.*
@@ -273,15 +274,15 @@ The Go has a builtin race detector. It can detect these kind of errors.
 
 > Data races are among the most common and hardest to debug types of bugs in
 > concurrent systems. A data race occurs when two goroutines access the same
-> variable concurrently and at least one of the accesses is a write. 
+> variable concurrently and at least one of the accesses is a write.
 
 ----
 
 # Example
 
-```go 
+```go
 [x/counter] $ go run -race racy.go
-$ go run -race racy0.go 
+$ go run -race racy0.go
 WARNING: DATA RACE
 Read at 0x00c0000b4010 by goroutine 8:
   main.main.func1()
@@ -298,7 +299,7 @@ Goroutine 8 (running) created at:
 Goroutine 7 (finished) created at:
   main.main()
       /home/tir/code/miku/concgo/solutions/counter/racy0.go:11 +0x83
-``` 
+```
 
 ----
 
@@ -315,7 +316,7 @@ gets slower and will consume more memory.
 > The **race detector only finds races that happen at runtime**, so it can't find
 > races in code paths that are not executed. If your tests have incomplete
 > coverage, you may find more races by running a binary built with -race under a
-> realistic workload. 
+> realistic workload.
 
 But it found numerous bugs in the standard library and elsewhere. The `-race`
 flag can be used during testing, in production the overhead might be
@@ -643,7 +644,7 @@ This pattern has been described in various talks, blog posts and
 * Example: x/hedged
 
 We want quick news, and do not necessary care about the source. Make N HTTP
-requests to news sources and display the first one, cancel the others. 
+requests to news sources and display the first one, cancel the others.
 
 ```
  ________________________________________
@@ -672,7 +673,7 @@ Added to the standard library in Go 1.7.
 > servers should accept a Context. The chain of function calls between them must
 > propagate the Context, optionally replacing it with a derived Context created
 > using WithCancel, WithDeadline, WithTimeout, or WithValue. When a Context is
-> canceled, all Contexts derived from it are also canceled. 
+> canceled, all Contexts derived from it are also canceled.
 
 ----
 
@@ -698,7 +699,7 @@ Added to the standard library in Go 1.7.
 # Context allows to pass values with it
 
 > Use context Values only for request-scoped data that transits processes and
-> APIs, not for passing optional parameters to functions. 
+> APIs, not for passing optional parameters to functions.
 
 ----
 
