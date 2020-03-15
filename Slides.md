@@ -62,6 +62,8 @@ Get more familiar with a few primitives and patterns.
 
 # Paper: Understanding Real-World Concurrency Bugs in Go
 
+[![](static/go-study-page-1.jpg)](https://songlh.github.io/paper/go-study.pdf)
+
 * [Paper](https://songlh.github.io/paper/go-study.pdf)
 * Looked at Docker, k8s, etc, CockroachDB, gRPC-Go, BoltDB
 
