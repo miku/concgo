@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 
 	"golang.org/x/sync/errgroup"
@@ -24,10 +24,13 @@ func main() {
 				resp.Body.Close()
 			}
 			return err
+			// return fmt.Errorf("failed to fetch url")
 		})
 	}
 	// Wait for all HTTP fetches to complete.
 	if err := g.Wait(); err == nil {
-		fmt.Println("Successfully fetched all URLs.")
+		log.Println("Successfully fetched all URLs.")
+	} else {
+		log.Printf("failed with: %v", err)
 	}
 }
